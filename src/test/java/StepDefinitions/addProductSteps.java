@@ -12,8 +12,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.LoginPage;
 
-import java.util.concurrent.TimeUnit;
-
 public class addProductSteps {
     private WebDriver webDriver;
     private LoginPage loginPage;
@@ -39,17 +37,16 @@ public class addProductSteps {
     public void user_is_on_login_page() {
         test.log(Status.INFO, "Starting Test Case");
 
-        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        webDriver.navigate().to(baseUrl);
+        loginPage = new LoginPage(webDriver);
+        loginPage.loadPage();
 
         test.pass("User is on login page");
     }
     @When("user enters email and password")
     public void user_enters_email_and_password() {
-        loginPage = new LoginPage(webDriver);
-
         loginPage.enterEmail("thanhthanh@gmail.com");
         loginPage.enterPassword("thanhthanh");
+
         test.pass("User entered email and password");
     }
     @And("clicks on login button")
@@ -65,7 +62,7 @@ public class addProductSteps {
     @Given("user is on home page")
     public void user_is_on_home_page() {
         homePage = new HomePage(webDriver);
-        homePage.navigatedToHomePage();
+        homePage.loadPage();
         test.pass("user on home page");
     }
     @When("^user hovers on (.*) and click Add to cart$")

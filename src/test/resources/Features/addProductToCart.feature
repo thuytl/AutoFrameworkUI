@@ -13,5 +13,5 @@ Feature: Test add product to cart functionality
     Examples:
       | item                  |
       | Printed Chiffon Dress |
-      | Blouse                |
-      |Faded Short Sleeve T-shirts|
+#      | Blouse                |
+#      |Faded Short Sleeve T-shirts|

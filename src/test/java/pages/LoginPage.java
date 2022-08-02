@@ -6,39 +6,45 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
-public class LoginPage {
-    WebDriver driver;
+public class LoginPage extends BasePage {
+
+    private String urlLogin = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+    private String titleLogin = "Login - My Store";
+
     @FindBy(id = "email")
-    WebElement txt_email;
+    private WebElement txt_email;
 
     @FindBy(id = "passwd")
-    WebElement txt_password;
+    private WebElement txt_password;
 
     @FindBy(id = "SubmitLogin")
-    WebElement btn_login;
+    private WebElement btn_login;
 
     @FindBy(className = "logout")
-    WebElement btn_logout;
+    private WebElement btn_logout;
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
+        this.PAGE_TITLE = titleLogin;
+        this.PAGE_URL = urlLogin;
+
         AjaxElementLocatorFactory factory = new AjaxElementLocatorFactory(driver, 30);
         PageFactory.initElements(factory, this);
     }
 
     public void enterEmail(String email) {
-        txt_email.sendKeys(email);
+        setElementText(txt_email, email);
     }
 
     public void enterPassword(String password) {
-        txt_password.sendKeys(password);
+        setElementText(txt_password, password);
     }
 
     public void clickLogin() {
-        btn_login.click();
+        clickElement(btn_login);
     }
 
     public void LogoutButtonIsDisplayed() {
-        btn_logout.isDisplayed();
+        elementDisplayed(btn_logout);
     }
 }
