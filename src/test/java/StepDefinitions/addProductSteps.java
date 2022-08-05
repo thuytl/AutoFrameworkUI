@@ -10,6 +10,7 @@ import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -33,7 +34,12 @@ public class addProductSteps {
 
         ExtentCucumberAdapter.addTestStepLog("Setup browser");
 
+        //Auto download driver
+        WebDriverManager.chromedriver().setup();
+        /*
+        //Download into local (need to update when driver has new version)
         System.setProperty("webdriver.chrome.driver", "src/test/resources/driver/chromedriver.exe");
+         */
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
     }
